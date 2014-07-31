@@ -195,6 +195,17 @@
                 
             </dependencies>
         </profile>
+        <profile>
+            <id>tomee</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>arquillian-tomee-embedded</artifactId>
+                    <version>1.6.0.2</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
     
 </project>
