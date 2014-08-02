@@ -89,30 +89,21 @@
             </dependencies>
         </profile>
         <profile>
-            <id>openwebbeans-1.0</id>
+            <id>openejb-embedded</id>
             <dependencies>
-                
                 <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-openwebbeans-embedded-1</artifactId>
-                    <version>1.0.0.CR2</version>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>arquillian-openejb-embedded-4</artifactId>
+                    <version>4.6.0.2</version>
                     <scope>test</scope>
                 </dependency>
                 
                 <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-impl</artifactId>
-                    <version>1.1.7</version>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>openejb-core</artifactId>
+                    <version>4.6.0.2</version>
                     <scope>test</scope>
                 </dependency>
-                
-                <dependency>
-                    <groupId>org.apache.openwebbeans</groupId>
-                    <artifactId>openwebbeans-spi</artifactId>
-                    <version>1.1.7</version>
-                    <scope>test</scope>
-                </dependency>
-                
             </dependencies>
         </profile>
         <profile>
