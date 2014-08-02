@@ -1,6 +1,5 @@
 cdi-async-events-extension
 ====================
-Summary: An CDI Extension that allows you to send asynchronous CDI Events inside a CDI managed container.
 
 Introduction
 ---------------------
