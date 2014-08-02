@@ -150,6 +150,7 @@ On following CDI containers:
 - Glassfish 3.1.2.2 ( Weld 1.1.4 ) ( CDI 1.0 )
 - Glassfish 4.0.1 ( Weld 2.0.5 ) ( CDI 1.1 )
 - Wildfly 8.0 ( 2.1.2 ) ( CDI 1.1 )
-- OpenWebBeans ( 1.1.7 ) ( CDI 1.0 )
+- OpenEJB ( 4.6.0.2 ) ( CDI 1.0 )
+- TomEE ( 1.6.0.2 ) ( CDI 1.0 )
 - Weld-SE ( 2.2.3 ) ( CDI 1.2 )
 
