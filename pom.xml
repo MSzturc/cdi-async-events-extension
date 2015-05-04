@@ -2,67 +2,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>de.mszturc</groupId>
+        <artifactId>javaee-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+    
     <groupId>de.mszturc</groupId>
     <artifactId>cdi-async-events-extension</artifactId>
     <version>1.0</version>
     <name>cdi-async-events-extension</name>
     <packaging>jar</packaging>
-    <url>http://www.MSzturc.de</url>
     
-    <organization>
-        <name>Matthäus Szturc</name>
-        <url>http://www.MSzturc.de</url>
-    </organization>
-    
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
-    
-    <dependencyManagement>
-        <dependencies>
-            
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.1.5.Final</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         
         <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>1.2</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
         </dependency>
         
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
         </dependency>
         
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
         </dependency>
         
     </dependencies>
@@ -82,206 +49,26 @@
                 <dependency>
                     <groupId>org.jboss.weld</groupId>
                     <artifactId>weld-core</artifactId>
-                    <version>2.2.3.Final</version>
+                    <version>2.2.11.Final</version>
                     <scope>test</scope>
                 </dependency>
                 
             </dependencies>
         </profile>
         <profile>
-            <id>openejb-embedded</id>
+            <id>openejb-embedded-4</id>
             <dependencies>
                 <dependency>
                     <groupId>org.apache.openejb</groupId>
                     <artifactId>arquillian-openejb-embedded-4</artifactId>
-                    <version>4.6.0.2</version>
+                    <version>4.7.1</version>
                     <scope>test</scope>
                 </dependency>
                 
                 <dependency>
                     <groupId>org.apache.openejb</groupId>
                     <artifactId>openejb-core</artifactId>
-                    <version>4.6.0.2</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>wildfly-8.0-final</id>
-            
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <!-- Fork every test because it will launch a separate AS instance -->
-                            <forkMode>always</forkMode>
-                            <systemPropertyVariables>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                                <jboss.home>${project.basedir}/target/wildfly-8.0.0.Final</jboss.home>
-                                <module.path>${project.basedir}/target/wildfly-8.0.0.Final/modules</module.path>
-                            </systemPropertyVariables>
-                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.wildfly</groupId>
-                                            <artifactId>wildfly-dist</artifactId>
-                                            <version>8.0.0.Final</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>target</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            
-            <dependencies>
-                
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-embedded</artifactId>
-                    <version>8.0.0.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-embedded</artifactId>
-                    <version>8.0.0.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                
-            </dependencies>
-        </profile>
-        <profile>
-            <id>wildfly-8.1-final</id>
-            
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <forkMode>always</forkMode>
-                            <systemPropertyVariables>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                                <jboss.home>${project.basedir}/target/wildfly-8.1.0.Final</jboss.home>
-                                <module.path>${project.basedir}/target/wildfly-8.1.0.Final/modules</module.path>
-                            </systemPropertyVariables>
-                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.wildfly</groupId>
-                                            <artifactId>wildfly-dist</artifactId>
-                                            <version>8.1.0.Final</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>target</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            
-            <dependencies>
-                
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-embedded</artifactId>
-                    <version>8.1.0.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-embedded</artifactId>
-                    <version>8.1.0.Final</version>
-                    <scope>test</scope>
-                </dependency>
-                
-            </dependencies>
-        </profile>
-        <profile>
-            <id>glassfish-3.1.2.2</id>
-            <dependencies>
-                
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>3.1.2.2</version>
-                    <scope>test</scope>
-                </dependency>
-                
-            </dependencies>
-        </profile>
-        <profile>
-            <id>glassfish-4.0</id>
-            <dependencies>
-                
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
-                </dependency>
-                
-                <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>4.0</version>
-                    <scope>test</scope>
-                </dependency>
-                
-            </dependencies>
-        </profile>
-        <profile>
-            <id>tomee</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.openejb</groupId>
-                    <artifactId>arquillian-tomee-embedded</artifactId>
-                    <version>1.6.0.2</version>
+                    <version>4.7.1</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
